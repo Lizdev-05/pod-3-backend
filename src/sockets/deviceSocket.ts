@@ -133,6 +133,18 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
             break;
           }
 
+          case "clear_dtcs": {
+            const deviceName = payload?.device_name?.toUpperCase();
+            if(deviceName && clientStore.deviceExists(deviceName)){
+              clientStore.sendToDevice(deviceName, {event, data:{}})
+            } else {
+              ws.send(JSON.stringify({ 
+                  event: "error", 
+                  data: { msg: `Device ${deviceName} is not available` }
+                }));
+            }
+          }
+
           default:
             break;
         }
