@@ -1,6 +1,7 @@
 import { WebSocketServer, WebSocket } from "ws";
 import { clientStore } from "../store/clientStore";
 import { sendWhatsAppMessage } from "../services/whatsappService";
+import { parse } from "path";
 
 const fs = require('fs');
 const FW_PATH = 'firmware.bin'; // put compiled ESP32 .bin here
@@ -12,63 +13,90 @@ interface DeviceMessage {
   data: {
     fw_version?: string;
     to?: string;
-    message?: string;
+    msg?: string;
     device_name?: string;
     type?: string;
   };
 }
-export function registerDeviceSocket(wss: WebSocketServer) {
+
+const parseVersion = (ver: string): number => {
+        if (!ver) return 0;
+        let major = 0, minor = 0, patch = 0;
+        const ver_split = ver.split('.');
+        major = parseInt(ver_split[0], 10) || 0;
+        minor = parseInt(ver_split[1], 10) || 0;
+        patch = parseInt(ver_split[2], 10) || 0;
+        return major * 10000 + minor * 100 + patch;
+};
+
+export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process.cwd()) {
   wss.on("connection", (ws: WebSocket) => {
     console.log("🔌 Device connected");
 
     ws.on("message", async (data) => {
       try {
-        const msg = JSON.parse(data.toString());
-        const { event, data: payload }: DeviceMessage = msg;
+        const parsed_msg = JSON.parse(data.toString());
+        console.log('Received message:', parsed_msg);
+        const { event, data: payload }: DeviceMessage = parsed_msg;
 
         switch (event) {
           case "update": {
-            const fwVersion = payload?.fw_version;
-            console.log('hello from', fwVersion);
-            const latestVer = fs.readFileSync(LATEST_VERSION, 'utf8').trim();
-            console.log('latest version is', latestVer);
+            const fwVersion = parseVersion(payload?.fw_version || "");
+            // console.log('hello from', fwVersion);
+            const latestVer = parseVersion(fs.readFileSync(`${cwd}/${LATEST_VERSION}`, 'utf8').trim());
+            // console.log('latest version is', latestVer);
             
             if (fwVersion !== latestVer) {
-              const stats = fs.statSync(FW_PATH);
+              const stats = fs.statSync(`${cwd}/${FW_PATH}`);
               const size = stats.size;
               // Send header with file size
               ws.send(JSON.stringify({ event: 'header', data: { size } }));
               
               // Stream file as binary frames in chunks
-              const stream = fs.createReadStream(FW_PATH, { highWaterMark: 4096 });
+              const stream = fs.createReadStream(`${cwd}/${FW_PATH}`, { highWaterMark: 4096 });
               stream.on('data', (chunk: Buffer) => ws.send(chunk));
               stream.on('end', () => console.log('fw sent'));
+            } else {
+              ws.send(JSON.stringify({ event: 'update', data: { msg: 'Firmware is up to date' } }));
+              // console.log('firmware is up to date');
             }
             break;
           }
 
           case "register": {
-            const { type, device_name } = payload || {};
-            if (!type || !device_name) break;
+            // console.log('Register event payload:', payload);
 
-            if (type === "esp32") {
-              clientStore.registerDevice(device_name, ws);
+            const deviceName = payload?.device_name?.toUpperCase();
+            const type = payload?.type;
+
+            if (type === "esp32" && deviceName) {
+              clientStore.registerDevice(deviceName, ws);
               ws.send(JSON.stringify({ 
                 event: "registered", 
-                data: `Device ${device_name} registered successfully` 
+                data: { msg: `Device ${deviceName} registered successfully` } 
               }));
-            } else if (type === "web") {
-              webDeviceMap[device_name] = ws;
+            } else if (type === "web" && deviceName) {
+              if (!clientStore.deviceExists(deviceName)) {
+                ws.send(JSON.stringify({ 
+                  event: "error", 
+                  data: { msg: `Device ${deviceName} is not available` }
+                }));
+                // ws.close();
+                break;
+              }
+              webDeviceMap[deviceName] = ws;
               ws.send(JSON.stringify({ 
                 event: "registered", 
-                data: `Web client ${device_name} registered successfully` 
+                data: { msg: `Web client for device ${deviceName} registered successfully` }
               }));
             }
             break;
           }
 
           case "send_to_whatsapp": {
-            const { to, message } = payload || {};
+            // const { to, message } = payload || {};
+            const to = payload?.to;
+            const message = payload?.msg;
             if (to && message) {
               await sendWhatsAppMessage(to, message);
             }
@@ -76,11 +104,12 @@ export function registerDeviceSocket(wss: WebSocketServer) {
           }
 
           case "latest": {
-            const { device_name, message } = payload || {};
-            if (device_name && message && webDeviceMap[device_name]) {
-              webDeviceMap[device_name].send(JSON.stringify({ 
+            const msg = payload?.msg;
+            const deviceName = payload?.device_name?.toUpperCase();
+            if (deviceName && msg && webDeviceMap[deviceName]) {
+              webDeviceMap[deviceName].send(JSON.stringify({ 
                 event: "latest", 
-                data: { message } 
+                data: { msg } 
               }));
             }
             break;

@@ -1,0 +1,176 @@
+{
+  "P0002": {
+    "code": "P0002",
+    "name": "Fuel Volume Regulator Control Circuit Range/Performance",
+    "description": "The Powertrain Control Module (PCM) has detected a problem with the fuel volume regulator control circuit. This code indicates that the PCM is not receiving the expected signal from the fuel volume regulator, meaning the regulator isn't adjusting fuel pressure properly. This can affect engine performance, fuel economy, and emissions.",
+    "affected_models": {
+      "brand": "Ford, Lincoln, Mercury, Mazda",
+      "years": "2000-2015",
+      "models": "Focus, Ranger, Explorer, F-150, Navigator, Grand Marquis, Marauder, 3, 5, 6, CX-7, CX-9, Tribute"
+    },
+    "likely_causes": [
+      "Faulty Fuel Volume Regulator (FVR)",
+      "Wiring issues in the FVR control circuit (open, short to ground, or short to voltage)",
+      "Corroded or loose FVR connector",
+      "Faulty Fuel Pump",
+      "Clogged Fuel Filter",
+      "PCM failure (rare)"
+    ],
+    "guided_steps": [
+      {
+        "step": 1,
+        "title": "Visual Inspection",
+        "description": "Inspect the wiring and connector to the Fuel Volume Regulator (FVR). Look for any signs of damage, corrosion, or loose connections. Pay close attention to areas where the wiring may be exposed to heat or rubbing.",
+        "tools_needed": [
+          "Flashlight",
+          "Inspection mirror"
+        ]
+      },
+      {
+        "step": 2,
+        "title": "Check Fuel Pressure",
+        "description": "Using a fuel pressure gauge, verify that the fuel pressure is within the manufacturer's specified range. Compare the measured pressure to the specifications during various engine operating conditions (idle, acceleration, deceleration).",
+        "tools_needed": [
+          "Fuel pressure gauge"
+        ]
+      },
+      {
+        "step": 3,
+        "title": "Test Fuel Volume Regulator",
+        "description": "With the engine off, disconnect the electrical connector to the FVR. Using a multimeter, measure the resistance of the FVR solenoid. Compare the reading to the manufacturer's specifications. If the resistance is outside the acceptable range, the FVR is likely faulty. You can also use a scan tool to command the FVR on and off and observe if the fuel pressure changes accordingly.",
+        "tools_needed": [
+          "Multimeter",
+          "Scan tool"
+        ]
+      },
+      {
+        "step": 4,
+        "title": "Inspect Fuel Filter",
+        "description": "Remove and inspect the fuel filter for clogging. A clogged filter can restrict fuel flow and affect fuel pressure regulation. Replace the filter if necessary.",
+        "tools_needed": [
+          "Fuel filter wrench",
+          "Drain pan",
+          "New fuel filter"
+        ]
+      },
+      {
+        "step": 5,
+        "title": "Check Fuel Pump Operation",
+        "description": "Verify that the fuel pump is operating correctly. Check the fuel pump relay, fuel pump fuse, and the power and ground signals to the fuel pump. A faulty fuel pump can cause low fuel pressure and trigger the P0002 code.",
+        "tools_needed": [
+          "Multimeter",
+          "Scan tool",
+          "Wiring diagram"
+        ]
+      },
+      {
+        "step": 6,
+        "title": "PCM Diagnosis (Last Resort)",
+        "description": "If all other components have been tested and found to be within specifications, the PCM may be the cause of the problem. However, PCM failure is rare. Consult a qualified technician for further diagnosis and potential PCM replacement.",
+        "tools_needed": [
+          "Scan tool",
+          "Wiring diagram",
+          "PCM diagnostic tools"
+        ]
+      }
+    ],
+    "tutorials": {
+      "title": "P0002 - Fuel Volume Regulator Control Circuit Range/Performance - How to Fix",
+      "youtubeId": "u9J8kO4H6Lw"
+    },
+    "bite_sized_insights": [
+      "This code is often related to fuel pressure regulation issues, which can stem from a variety of causes.",
+      "The Fuel Volume Regulator controls fuel pressure to maintain optimal engine performance.",
+      "Prioritize checking the wiring and connector to the FVR before replacing the component itself."
+    ],
+    "sources": [
+      "https://www.obd-codes.com/p0002/",
+      "https://ricksauto.com/p0002-ford-fuel-volume-regulator-control-circuit/"
+    ]
+  },
+  "P0001": {
+    "code": "P0001",
+    "name": "Fuel Volume Regulator Control Circuit / Open",
+    "description": "This diagnostic trouble code (DTC) P0001 indicates that the Powertrain Control Module (PCM) has detected a malfunction in the control circuit for the fuel volume regulator. Specifically, it signifies an open circuit – meaning there's a break in the electrical path – within the regulator's control system. The fuel volume regulator controls the amount of fuel delivered to the fuel rail, impacting fuel pressure and engine performance. This code typically appears in vehicles with electronic fuel injection systems.",
+    "affected_models": {
+      "brand": "Ford, Lincoln, Mercury, Mazda",
+      "years": "1996-2012",
+      "models": "Focus, Ranger, Explorer, F-150, Expedition, Navigator, Grand Marquis, Sable, Mazda 6, Mazda 3, Tribute"
+    },
+    "likely_causes": [
+      "Faulty Fuel Volume Regulator",
+      "Wiring harness damage to the fuel volume regulator",
+      "Corroded or loose electrical connectors",
+      "Faulty PCM (Powertrain Control Module)",
+      "Damaged fuel pump driver module (if equipped)",
+      "Open circuit in the wiring between the PCM and the fuel volume regulator",
+      "Fuel pump failure (in some cases, affecting regulator operation)"
+    ],
+    "guided_steps": [
+      {
+        "step": 1,
+        "title": "Visual Inspection",
+        "description": "Perform a thorough visual inspection of the wiring harness and connectors leading to the fuel volume regulator. Look for any signs of damage, corrosion, or loose connections. Pay close attention to areas where the harness may be exposed to heat or abrasion.",
+        "tools_needed": [
+          "Flashlight",
+          "Work gloves"
+        ]
+      },
+      {
+        "step": 2,
+        "title": "Connector Checks",
+        "description": "Disconnect and inspect the electrical connectors associated with the fuel volume regulator. Clean the connectors with electrical contact cleaner and ensure they are securely connected. Check the connector pins for any signs of bending or corrosion.",
+        "tools_needed": [
+          "Electrical contact cleaner",
+          "Small screwdriver (if needed for connector release)",
+          "Work gloves"
+        ]
+      },
+      {
+        "step": 3,
+        "title": "Wiring Continuity Test",
+        "description": "Using a multimeter, perform a continuity test on the wiring between the PCM and the fuel volume regulator. This will help identify any open circuits or shorts in the wiring. Refer to the vehicle's wiring diagram for the correct pin locations.",
+        "tools_needed": [
+          "Multimeter",
+          "Wiring diagram",
+          "Jumper wires (if needed)"
+        ]
+      },
+      {
+        "step": 4,
+        "title": "Fuel Volume Regulator Testing",
+        "description": "If the wiring checks out, test the fuel volume regulator itself. This may involve checking its resistance or applying voltage to see if it responds. Consult the vehicle's service manual for specific testing procedures. *Warning: Fuel system components are under pressure. Relieve pressure before disconnecting any components.*",
+        "tools_needed": [
+          "Multimeter",
+          "Wiring diagram",
+          "Fuel pressure gauge (optional)",
+          "Work gloves",
+          "Safety glasses"
+        ]
+      },
+      {
+        "step": 5,
+        "title": "PCM Diagnosis (Last Resort)",
+        "description": "If all other tests are negative, the PCM may be faulty. However, PCM failure is relatively rare. Before replacing the PCM, double-check all other components and wiring. PCM diagnosis often requires specialized scan tools and expertise.",
+        "tools_needed": [
+          "Advanced scan tool",
+          "Wiring diagram"
+        ]
+      }
+    ],
+    "tutorials": {
+      "title": "How to Diagnose a P0001 Code",
+      "youtubeId": "y5S1JqS9Ugc"
+    },
+    "bite_sized_insights": [
+      "A lean fuel condition can sometimes *cause* a P0001 code, but it's usually a symptom, not the root cause.",
+      "Fuel trim values should be examined along with this code to help narrow down the issue.",
+      "Always relieve fuel system pressure before disconnecting any fuel lines or components."
+    ],
+    "sources": [
+      "https://www.obd-codes.com/p0001/",
+      "https://ricksauto.com/p0001-fuel-volume-regulator-control-circuit-open/",
+      "https://repairpal.com/troubleshooting/p0001"
+    ]
+  }
+}
