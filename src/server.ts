@@ -30,6 +30,6 @@ const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
 registerDeviceSocket(wss, process.cwd());
 
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 3000;
 // console.log(process.env.PORT);
 server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

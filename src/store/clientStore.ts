@@ -14,7 +14,7 @@ class ClientStore {
   sendToDevice(id: string, data: any) {
     const socket = this.devices.get(id);
     if (socket && socket.readyState === WebSocket.OPEN) {
-      socket.send(JSON.stringify({ event: "from_whatsapp", data }));
+      socket.send(JSON.stringify(data));
     }
   }
 

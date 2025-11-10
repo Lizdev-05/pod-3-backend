@@ -69,13 +69,13 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
             const deviceName = payload?.device_name?.toUpperCase();
             const type = payload?.type;
 
-            if (type === "esp32" && deviceName) {
+            if (type === "esp32" && deviceName && !clientStore.deviceExists(deviceName)) {
               clientStore.registerDevice(deviceName, ws);
               ws.send(JSON.stringify({ 
                 event: "registered", 
                 data: { msg: `Device ${deviceName} registered successfully` } 
               }));
-            } else if (type === "web" && deviceName) {
+            } else if (type === "web" && deviceName && !webDeviceMap[deviceName]) {
               if (!clientStore.deviceExists(deviceName)) {
                 ws.send(JSON.stringify({ 
                   event: "error", 
@@ -89,6 +89,12 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
                 event: "registered", 
                 data: { msg: `Web client for device ${deviceName} registered successfully` }
               }));
+            } else {
+              ws.send(JSON.stringify({ 
+                event: "error", 
+                data: { msg: `Device ${deviceName} is already registered or invalid type` }
+              }));
+              // ws.close();
             }
             break;
           }
@@ -109,6 +115,18 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
             if (deviceName && msg && webDeviceMap[deviceName]) {
               webDeviceMap[deviceName].send(JSON.stringify({ 
                 event: "latest", 
+                data: { msg } 
+              }));
+            }
+            break;
+          }
+
+          case "dtcs_cleared": {
+            const msg = payload?.msg;
+            const deviceName = payload?.device_name?.toUpperCase();
+            if (deviceName && msg && webDeviceMap[deviceName]) {
+              webDeviceMap[deviceName].send(JSON.stringify({ 
+                event: "dtcs_cleared", 
                 data: { msg } 
               }));
             }
