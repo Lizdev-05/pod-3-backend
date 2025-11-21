@@ -1,0 +1,15 @@
+const chunkSize = 1024; // Adjust chunk size as needed
+        let offset = 0;
+
+        function sendNextChunk() {
+            if (offset < arrayBuffer.byteLength) {
+                const chunk = arrayBuffer.slice(offset, offset + chunkSize);
+                ws.send(chunk);
+                offset += chunkSize;
+                setTimeout(sendNextChunk, 10); // Add a small delay between chunks
+            } else {
+                ws.send('OTA_COMPLETE'); // Signal end of transfer
+                console.log('Firmware upload complete.');
+            }
+        }
+        sendNextChunk();

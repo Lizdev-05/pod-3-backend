@@ -1,12 +1,11 @@
 import { WebSocketServer, WebSocket } from "ws";
 import { clientStore } from "../store/clientStore";
 import { sendWhatsAppMessage } from "../services/whatsappService";
-import { parse } from "path";
 
 const fs = require('fs');
 const FW_PATH = 'firmware.bin'; // put compiled ESP32 .bin here
 const LATEST_VERSION = 'version.txt'; // set the version you want devices to update to
-const webDeviceMap: Record<string, WebSocket> = { };
+const webDeviceMap: Record<string, WebSocket[]> = { };
 
 interface DeviceMessage {
   event: string;
@@ -15,9 +14,12 @@ interface DeviceMessage {
     to?: string;
     msg?: string;
     device_name?: string;
+    device_pos?: number;
     type?: string;
   };
 }
+
+
 
 const parseVersion = (ver: string): number => {
         if (!ver) return 0;
@@ -41,6 +43,12 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
 
         switch (event) {
           case "update": {
+
+            // event: string;
+            // data: {
+            //   fw_version?: string;
+            // };
+
             const fwVersion = parseVersion(payload?.fw_version || "");
             // console.log('hello from', fwVersion);
             const latestVer = parseVersion(fs.readFileSync(`${cwd}/${LATEST_VERSION}`, 'utf8').trim());
@@ -66,6 +74,12 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
           case "register": {
             // console.log('Register event payload:', payload);
 
+            //   event: string;
+            //   data: {
+            //     device_name?: string;
+            //     type?: string;
+            //   };
+
             const deviceName = payload?.device_name?.toUpperCase();
             const type = payload?.type;
 
@@ -75,7 +89,7 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
                 event: "registered", 
                 data: { msg: `Device ${deviceName} registered successfully` } 
               }));
-            } else if (type === "web" && deviceName && !webDeviceMap[deviceName]) {
+            } else if (type === "web" && deviceName) {
               if (!clientStore.deviceExists(deviceName)) {
                 ws.send(JSON.stringify({ 
                   event: "error", 
@@ -84,11 +98,26 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
                 // ws.close();
                 break;
               }
-              webDeviceMap[deviceName] = ws;
+
+              if (!webDeviceMap[deviceName]) {
+                webDeviceMap[deviceName] = [];
+              }
+
+              if(webDeviceMap[deviceName].includes(ws)){
+                ws.send(JSON.stringify({ 
+                  event: "error", 
+                  data: { msg: `Web client for device ${deviceName} is already registered` }
+                }));
+                break;
+              }
+
+              webDeviceMap[deviceName].push(ws);
+
               ws.send(JSON.stringify({ 
                 event: "registered", 
                 data: { msg: `Web client for device ${deviceName} registered successfully` }
               }));
+
             } else {
               ws.send(JSON.stringify({ 
                 event: "error", 
@@ -104,19 +133,26 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
             const to = payload?.to;
             const message = payload?.msg;
             if (to && message) {
-              await sendWhatsAppMessage(to, message);
+              await sendWhatsAppMessage(to, message as string);
             }
             break;
           }
 
           case "latest": {
+            // interface paylod {
+            //   event: string;
+            //   data: {
+            //     device_name?: string;
+            //     msg?: string;
+            //   };
+            // }
             const msg = payload?.msg;
             const deviceName = payload?.device_name?.toUpperCase();
             if (deviceName && msg && webDeviceMap[deviceName]) {
-              webDeviceMap[deviceName].send(JSON.stringify({ 
+              webDeviceMap[deviceName].forEach(ws => ws.send(JSON.stringify({ 
                 event: "latest", 
                 data: { msg } 
-              }));
+              })));
             }
             break;
           }
@@ -124,8 +160,10 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
           case "dtcs_cleared": {
             const msg = payload?.msg;
             const deviceName = payload?.device_name?.toUpperCase();
+            const device_pos = payload?.device_pos || 0;
+
             if (deviceName && msg && webDeviceMap[deviceName]) {
-              webDeviceMap[deviceName].send(JSON.stringify({ 
+              webDeviceMap[deviceName][device_pos].send(JSON.stringify({ 
                 event: "dtcs_cleared", 
                 data: { msg } 
               }));
@@ -136,7 +174,9 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
           case "clear_dtcs": {
             const deviceName = payload?.device_name?.toUpperCase();
             if(deviceName && clientStore.deviceExists(deviceName)){
-              clientStore.sendToDevice(deviceName, {event, data:{}})
+              // get array position of web client in webDeviceMap
+              const index = webDeviceMap[deviceName].indexOf(ws);
+              clientStore.sendToDevice(deviceName, {event, data:{device_pos: index}});
             } else {
               ws.send(JSON.stringify({ 
                   event: "error", 
@@ -163,8 +203,8 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
       }
 
       for (const [name, socket] of Object.entries(webDeviceMap)) {
-        if (socket === ws) {
-          delete webDeviceMap[name];
+        if (socket.includes(ws)) {
+          webDeviceMap[name] = socket.filter(s => s !== ws);
           console.log(`🔌 Web client ${name} disconnected`);
           break;
         }

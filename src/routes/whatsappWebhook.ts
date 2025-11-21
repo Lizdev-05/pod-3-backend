@@ -55,7 +55,12 @@ router.post("/", async (req, res) => {
         break;
       }
 
-      if (deviceName && deviceExists) {
+      if(whatsappToDeviceMap[from] === deviceName){
+        sendWhatsAppMessage(from, `Device ${deviceName} is already registered to you.`);
+        break;
+      }
+
+      if (deviceName && deviceExists && !whatsappToDeviceMap[from]) {
         whatsappToDeviceMap[from] = deviceName;
         sendWhatsAppMessage(from, `Device ${deviceName} registered successfully.`);
         sendWhatsAppMessage(from, `You can now send commands to your device. Type HELP for a list of commands.`);
@@ -91,7 +96,12 @@ router.post("/", async (req, res) => {
       - CLEAR: Clear diagnostics trouble code.
       - HELP: Show this help message.`;
 
-      sendWhatsAppMessage(from, helpMessage);
+      if (whatsappToDeviceMap[from]) {
+        sendWhatsAppMessage(from, helpMessage);
+        break;
+      }
+
+      sendWhatsAppMessage(from, `You need to register a device first. Use the command: REGISTER <DEVICE_NAME>`);
       break;
     }
 

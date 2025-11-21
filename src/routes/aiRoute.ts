@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { getDtcDetails } from "../lib/dtc_details";
+import { type DTCStruct } from "../types/dtc_struct";
 
 const router = Router();
 
@@ -23,7 +24,7 @@ router.get("/", async (req, res) => {
     }
 
     try {
-        const parsed = await getDtcDetails(faultCode);
+        const parsed: DTCStruct = await getDtcDetails(faultCode);
 
         return res.json(parsed);
     } catch (error) {

@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs/promises";
 import OpenAI from "openai";
+import { type DTCStruct } from "../types/dtc_struct";
 
 const openai = new OpenAI({
     baseURL: "https://openrouter.ai/api/v1",
@@ -8,7 +9,7 @@ const openai = new OpenAI({
     dangerouslyAllowBrowser: true,
     defaultHeaders: {
       'HTTP-Referer': 'http://localhost:3000',
-      'X-Title': 'Bank Statement Analyzer',
+      'X-Title': 'POD 3',
     },
 });
 
@@ -44,7 +45,7 @@ Rules:
 // path to local cache file
 const DATA_FILE = path.resolve(__dirname, "..", "..", "data", "fault_codes.json");
 
-async function readCache(): Promise<Record<string, any>> {
+async function readCache(): Promise<Record<DTCStruct["code"], DTCStruct>> {
     try {
         const raw = await fs.readFile(DATA_FILE, "utf8");
         return JSON.parse(raw);
@@ -55,13 +56,13 @@ async function readCache(): Promise<Record<string, any>> {
     }
 }
 
-async function writeCache(db: Record<string, any>) {
+async function writeCache(db: Record<DTCStruct["code"], DTCStruct>): Promise<void> {
     const dir = path.dirname(DATA_FILE);
     await fs.mkdir(dir, { recursive: true });
     await fs.writeFile(DATA_FILE, JSON.stringify(db, null, 2), "utf8");
 }
 
-export async function getDtcDetails(code: string): Promise<any> {
+export async function getDtcDetails(code: string): Promise<DTCStruct> {
     const faultCode = code.trim();
     if (!faultCode) {
         throw new Error("Missing fault code");
