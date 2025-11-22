@@ -1,6 +1,8 @@
 import { WebSocketServer, WebSocket } from "ws";
 import { clientStore } from "../store/clientStore";
 import { sendWhatsAppMessage } from "../services/whatsappService";
+import { whatsappToDeviceMap } from "../routes/whatsappWebhook";
+import { send } from "process";
 
 const fs = require('fs');
 const FW_PATH = 'firmware.bin'; // put compiled ESP32 .bin here
@@ -189,7 +191,7 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
             break;
         }
       } catch (err) {
-        console.error("⚠️ Invalid message:", err);
+        console.error("⚠️ Invalid message:", err)
       }
     });
 
@@ -197,6 +199,21 @@ export function registerDeviceSocket(wss: WebSocketServer, cwd: string = process
       for (const [id, socket] of clientStore.devices.entries()) {
         if (socket === ws) {
           clientStore.removeDevice(id);
+
+          // broadcast device disconnection to other clients
+          webDeviceMap[id].forEach(ws => ws.send(JSON.stringify({
+            event: "device_disconnected",
+            data: { device_name: id }
+          })))
+          delete webDeviceMap[id];
+          
+          Object.keys(whatsappToDeviceMap).forEach(key => {
+            if (whatsappToDeviceMap[key] === id) {
+              sendWhatsAppMessage(key, `Device ${id} disconnected`);
+              delete whatsappToDeviceMap[key];
+            }
+          });
+
           console.log(`🔌 Device ${id} disconnected`);
           break;
         }

@@ -5,7 +5,7 @@ import { type DTCStruct } from "../types/dtc_struct";
 const router = Router();
 
 // Add CORS headers for this route group
-router.use((req, res, next) => {
+router.use(async (req, res, next) => {
   // change origin to your frontend URL in production (e.g. http://localhost:5173)
   const origin = process.env.FRONTEND_ORIGIN ?? "*";
   res.setHeader("Access-Control-Allow-Origin", origin);

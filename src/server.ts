@@ -17,7 +17,7 @@ app.use("/api/ai", aiRoute);
 app.use("/api/webhook/whatsapp", whatsappWebhook);
 
 // cors
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");

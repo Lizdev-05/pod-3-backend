@@ -6,7 +6,7 @@ import { getDtcDetails } from "../lib/dtc_details";
 const router = Router();
 
 // Add CORS headers for this route group
-router.use((req, res, next) => {
+router.use(async (req, res, next) => {
   // change origin to your frontend URL in production (e.g. http://localhost:5173)
   const origin = process.env.FRONTEND_ORIGIN ?? "*";
   res.setHeader("Access-Control-Allow-Origin", origin);
@@ -18,9 +18,9 @@ router.use((req, res, next) => {
 });
 
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN || "myverifytoken";
-const whatsappToDeviceMap: Record<string, string> = { };
+export const whatsappToDeviceMap: Record<string, string> = { };
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
   const challenge = req.query["hub.challenge"];

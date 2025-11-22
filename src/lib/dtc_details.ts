@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs/promises";
 import OpenAI from "openai";
+import axios from "axios";
 import { type DTCStruct } from "../types/dtc_struct";
 
 const openai = new OpenAI({
@@ -13,7 +14,7 @@ const openai = new OpenAI({
     },
 });
 
-const PARSING_PROMPT = `You are a car disagnostic trouble code expert. Diagnostic trouble code be sent to you, then would make a deep research on it and return a valid JSON object:
+const PARSING_PROMPT = `You are a car disagnostic trouble code expert. Diagnostic trouble code that would be sent to you, then you would make a deep research on it and return a valid JSON object:
 
 {
   "code": string;
@@ -40,7 +41,13 @@ const PARSING_PROMPT = `You are a car disagnostic trouble code expert. Diagnosti
 }
 
 Rules:
-- Return ONLY valid JSON, no backticks, no markdown or extra text`
+- Return ONLY valid JSON, no backticks, no markdown or extra text
+- Please ensure the youtubeId is actually available on YouTube and its a valid youtube video ID
+- Ensure the JSON is properly formatted
+- If some fields are not available, return empty strings or empty arrays
+- The youtubeId must be only the ID, not the full link, this is important but if cannot find any video, return empty string
+- If the youtubeId would be longer than 11 characters, return empty string
+- If you don't know the answer, return an empty JSON with just the code field filled`
 
 // path to local cache file
 const DATA_FILE = path.resolve(__dirname, "..", "..", "data", "fault_codes.json");
@@ -62,6 +69,17 @@ async function writeCache(db: Record<DTCStruct["code"], DTCStruct>): Promise<voi
     await fs.writeFile(DATA_FILE, JSON.stringify(db, null, 2), "utf8");
 }
 
+async function isValidYouTubeId(id: string): Promise<boolean> {
+  const url = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`;
+
+  try {
+    await axios.get(url, { timeout: 5000 });
+    return true;  // valid video
+  } catch (err) {
+    return false; // invalid or private video
+  }
+}
+
 export async function getDtcDetails(code: string): Promise<DTCStruct> {
     const faultCode = code.trim();
     if (!faultCode) {
@@ -77,20 +95,39 @@ export async function getDtcDetails(code: string): Promise<DTCStruct> {
 
     // not cached -> call OpenAI
     console.log("Cache miss for", faultCode, "- querying AI");
-    const response = await openai.responses.create({
+    const response = await openai.chat.completions.create({
         model: 'google/gemma-3-27b-it:free',
-        input: [
-            {role: 'system', content: PARSING_PROMPT},
+        messages: [
+            {role: 'assistant', content: PARSING_PROMPT},
             {role: 'user', content: `Please provide detailed information about the fault code ${faultCode}.`},
         ],
+        // instructions: PARSING_PROMPT,
+        // input: `Please provide detailed information about the fault code ${faultCode}.`,
+        // format: "json",
+        max_tokens: 4000,
+        temperature: 0.7,
     });
 
-    const result = (response as any).output_text ?? (response as any).output?.[0]?.content?.[0]?.text ?? null;
+    // const result = (response as any).output_text ?? (response as any).output?.[0]?.content?.[0]?.text ?? null;
+    const result = response.choices?.[0]?.message?.content ?? null;
+    if (!result) {
+        throw new Error("AI did not return any result");
+    }
     const text = (result?.trim() ?? "").replace("```json", ' ').replace("```", ' ').trim();
     console.log("AI Response:", text);
 
     // parse AI JSON and save to cache
     const parsed = JSON.parse(text);
+
+    // Validate youtubeId
+    if (parsed.tutorials && parsed.tutorials.youtubeId) {
+        const isValid = await isValidYouTubeId(parsed.tutorials.youtubeId);
+        if (!isValid) {
+            parsed.tutorials.youtubeId = "";
+        }
+    }
+
+    // save to cache
     const newDb = { ...db, [faultCode]: parsed };
     await writeCache(newDb);
 

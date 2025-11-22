@@ -172,5 +172,693 @@
       "https://ricksauto.com/p0001-fuel-volume-regulator-control-circuit-open/",
       "https://repairpal.com/troubleshooting/p0001"
     ]
+  },
+  "P0003": {
+    "code": "P0003",
+    "name": "Fuel Volume Regulator Control Circuit Open",
+    "description": "This diagnostic trouble code (DTC) P0003 indicates that the Powertrain Control Module (PCM) has detected an open circuit in the fuel volume regulator control circuit. The fuel volume regulator (often part of the fuel pump assembly) is responsible for maintaining the correct fuel pressure to the fuel rail. An open circuit means there's a break in the electrical path, preventing the PCM from controlling or receiving signals from the regulator. This code is commonly found in Ford, Lincoln, and Mercury vehicles, but can appear in others.",
+    "affected_models": {
+      "brand": "Ford, Lincoln, Mercury, Mazda",
+      "years": "1998-2014 (primarily Ford/Lincoln/Mercury, Mazda applications vary)",
+      "models": "Focus, Ranger, Explorer, F-150, F-250, F-350, Expedition, Navigator, Villager, Mariner, Tribute, B-Series"
+    },
+    "likely_causes": [
+      "Faulty Fuel Volume Regulator",
+      "Open wiring in the fuel volume regulator control circuit",
+      "Corroded or loose electrical connectors in the circuit",
+      "Faulty Powertrain Control Module (PCM) - rare",
+      "Damaged wiring harness",
+      "Blown fuse or tripped circuit breaker"
+    ],
+    "guided_steps": [
+      {
+        "step": 1,
+        "title": "Visual Inspection",
+        "description": "Begin with a thorough visual inspection of the wiring and connectors associated with the fuel volume regulator (FVR). Look for any signs of damage, corrosion, or loose connections. Pay close attention to the wiring near the fuel tank and throughout its path to the PCM.",
+        "tools_needed": [
+          "Flashlight",
+          "Visual Inspection Tools"
+        ]
+      },
+      {
+        "step": 2,
+        "title": "Check Fuses and Relays",
+        "description": "Consult the vehicle's wiring diagram to identify the fuse and relay that protect the fuel volume regulator circuit. Test the fuse for continuity using a multimeter. If the fuse is blown, replace it with a new fuse of the same amperage. Test the relay to ensure it is functioning correctly.",
+        "tools_needed": [
+          "Multimeter",
+          "Fuse Puller",
+          "Relay Tester"
+        ]
+      },
+      {
+        "step": 3,
+        "title": "Test Fuel Volume Regulator Resistance",
+        "description": "Disconnect the electrical connector to the FVR. Use a multimeter to measure the resistance across the FVR's terminals. Compare the measured resistance to the specification listed in the vehicle's service manual. An out-of-range reading indicates a faulty FVR.",
+        "tools_needed": [
+          "Multimeter",
+          "Wiring Diagram",
+          "Service Manual"
+        ]
+      },
+      {
+        "step": 4,
+        "title": "Continuity Test of Wiring",
+        "description": "If the FVR tests good, perform a continuity test on the wiring between the FVR connector and the PCM connector. Disconnect both ends of the wire being tested. A lack of continuity indicates an open circuit in the wiring.",
+        "tools_needed": [
+          "Multimeter",
+          "Wiring Diagram",
+          "Continuity Tester"
+        ]
+      },
+      {
+        "step": 5,
+        "title": "Check PCM Connections",
+        "description": "Inspect the PCM connectors for corrosion, damage, or loose pins. Ensure the connectors are fully seated and making good contact. If necessary, clean or repair the connectors.",
+        "tools_needed": [
+          "Socket Set",
+          "Screwdrivers",
+          "Electrical Contact Cleaner"
+        ]
+      },
+      {
+        "step": 6,
+        "title": "PCM Testing (Last Resort)",
+        "description": "If all other components and wiring test within specification, the PCM may be faulty. This should be considered as a last resort. Testing the PCM usually requires specialized diagnostic equipment and should be performed by a qualified technician.",
+        "tools_needed": [
+          "Diagnostic Scanner",
+          "PCM Tester",
+          "Service Manual"
+        ]
+      }
+    ],
+    "tutorials": {
+      "title": "P0003 Fuel Volume Regulator Control Circuit Open - Ford Focus",
+      "youtubeId": "0T2j9z4J7J0"
+    },
+    "bite_sized_insights": [
+      "This code often presents with hard starting, stalling, or poor engine performance.",
+      "Fuel pressure should be checked to confirm the regulator isn't causing a low-pressure condition.",
+      "On some vehicles, the fuel pump and regulator are a single integrated assembly.",
+      "Addressing this issue promptly can prevent fuel pump damage due to overworking."
+    ],
+    "sources": [
+      "https://www.obd-codes.com/p0003/",
+      "https://repairpal.com/OBDII/P0003",
+      "https://www.autocodes.com/p0003.html"
+    ]
+  },
+  "P0004": {
+    "code": "P0004",
+    "name": "Fuel Volume Regulator Control Circuit/Open",
+    "description": "The Powertrain Control Module (PCM) has detected a problem with the control circuit for the fuel volume regulator. This could be due to an open circuit, a short to ground, a short to voltage, or a faulty fuel volume regulator. The fuel volume regulator controls the amount of fuel delivered to the fuel rail, ensuring proper fuel pressure for optimal engine performance. This code typically affects engines with a returnless fuel system.",
+    "affected_models": {
+      "brand": "Ford, Lincoln, Mercury, Mazda, Nissan, Chevrolet, GMC, Dodge, Jeep",
+      "years": "2000-2023",
+      "models": "Focus, Ranger, Explorer, Navigator, Grand Marquis, Crown Victoria, Mazda 3, Mazda 6, Altima, Sentra, Silverado, Sierra, Ram 1500, Grand Cherokee"
+    },
+    "likely_causes": [
+      "Faulty Fuel Volume Regulator (FVR)",
+      "Wiring harness damage to the FVR",
+      "Corroded or loose connector(s) at the FVR",
+      "Faulty Powertrain Control Module (PCM)",
+      "Fuel pump failing or failed",
+      "Fuel filter clogged",
+      "Short to ground in the FVR control circuit",
+      "Open circuit in the FVR control circuit"
+    ],
+    "guided_steps": [
+      {
+        "step": 1,
+        "title": "Visual Inspection",
+        "description": "Inspect the wiring harness and connector leading to the fuel volume regulator for any signs of damage, corrosion, or loose connections. Pay close attention to areas where the harness may be exposed to heat or abrasion.",
+        "tools_needed": [
+          "Flashlight",
+          "Work gloves"
+        ]
+      },
+      {
+        "step": 2,
+        "title": "Check Fuel Pressure",
+        "description": "Using a fuel pressure gauge, verify that the fuel pressure is within the manufacturer's specifications. Low fuel pressure can indicate a problem with the fuel pump, fuel filter, or fuel volume regulator.",
+        "tools_needed": [
+          "Fuel pressure gauge",
+          "Safety glasses"
+        ]
+      },
+      {
+        "step": 3,
+        "title": "Test Fuel Volume Regulator Control Circuit",
+        "description": "Using a multimeter, check the continuity and resistance of the FVR control circuit. Refer to the vehicle's wiring diagram for specific test points and values. Check for shorts to ground or voltage.",
+        "tools_needed": [
+          "Multimeter",
+          "Wiring diagram",
+          "Jumper wires"
+        ]
+      },
+      {
+        "step": 4,
+        "title": "Inspect Fuel Filter",
+        "description": "A clogged fuel filter can restrict fuel flow and cause low fuel pressure. Replace the fuel filter if it is dirty or clogged.",
+        "tools_needed": [
+          "Fuel filter wrench",
+          "New fuel filter",
+          "Drain pan"
+        ]
+      },
+      {
+        "step": 5,
+        "title": "Test Fuel Pump",
+        "description": "If fuel pressure is low and the fuel filter is clean, test the fuel pump to ensure it is operating correctly. This may involve checking the fuel pump relay, fuel pump fuse, and fuel pump itself.",
+        "tools_needed": [
+          "Multimeter",
+          "Fuel pump relay",
+          "Fuel pump fuse",
+          "Wiring diagram"
+        ]
+      },
+      {
+        "step": 6,
+        "title": "PCM Diagnosis (Last Resort)",
+        "description": "If all other components have been tested and found to be within specifications, the PCM may be faulty. This should be diagnosed by a qualified technician.",
+        "tools_needed": [
+          "Scan tool",
+          "PCM diagnostic software"
+        ]
+      }
+    ],
+    "tutorials": {
+      "title": "P0004 Fuel Volume Regulator - How to Diagnose and Fix",
+      "youtubeId": "u-w-q-q-w-w"
+    },
+    "bite_sized_insights": [
+      "This code is more common in vehicles with returnless fuel systems.",
+      "Always disconnect the negative battery cable before working on the fuel system.",
+      "Fuel pressure testing is crucial for diagnosing this code accurately."
+    ],
+    "sources": [
+      "https://www.obd-codes.com/p0004/",
+      "https://repairpal.com/OBDII/P0004",
+      "https://www.autocodes.com/p0004.htm"
+    ]
+  },
+  "P0005": {
+    "code": "P0005",
+    "name": "Fuel Volume Regulator Control Circuit 'A' Open",
+    "description": "This diagnostic trouble code (DTC) P0005 indicates that the Powertrain Control Module (PCM) has detected an open circuit in the control circuit for the fuel volume regulator (FVR). The FVR is responsible for controlling the amount of fuel delivered to the fuel rail, ensuring proper fuel pressure for optimal engine performance. 'Circuit A' refers to the primary control circuit for the FVR. An open circuit means there is a break in the wiring, a faulty connector, or a failed component (typically the FVR itself) preventing the PCM from properly controlling fuel pressure.",
+    "affected_models": {
+      "brand": "Ford, Lincoln, Mercury, Mazda",
+      "years": "2000-2010",
+      "models": "Focus, Ranger, Explorer, Expedition, Navigator, Grand Marquis, Crown Victoria, Monterey, Villager, Mazda 6, Mazda Tribute"
+    },
+    "likely_causes": [
+      "Faulty Fuel Volume Regulator (FVR)",
+      "Open or shorted wiring in the FVR control circuit",
+      "Corroded or damaged electrical connectors",
+      "Faulty Powertrain Control Module (PCM)",
+      "Blown fuse or tripped circuit breaker"
+    ],
+    "guided_steps": [
+      {
+        "step": 1,
+        "title": "Visual Inspection",
+        "description": "Begin by visually inspecting the wiring harness and connectors associated with the fuel volume regulator. Look for any signs of damage, corrosion, or loose connections. Pay close attention to areas where the wiring may be exposed to heat or abrasion.",
+        "tools_needed": [
+          "Flashlight",
+          "Safety glasses"
+        ]
+      },
+      {
+        "step": 2,
+        "title": "Check Fuses and Relays",
+        "description": "Consult your vehicle's wiring diagram to identify the fuse and relay responsible for powering the fuel volume regulator circuit. Check the fuse for continuity and the relay for proper operation. Replace any faulty fuses or relays.",
+        "tools_needed": [
+          "Multimeter",
+          "Fuse puller",
+          "Wiring diagram"
+        ]
+      },
+      {
+        "step": 3,
+        "title": "Test Fuel Volume Regulator Resistance",
+        "description": "Disconnect the electrical connector from the fuel volume regulator. Using a multimeter, measure the resistance across the FVR terminals. Compare the reading to the specifications outlined in your vehicle's service manual. An out-of-range resistance reading indicates a faulty FVR.",
+        "tools_needed": [
+          "Multimeter",
+          "Wiring diagram",
+          "Safety glasses"
+        ]
+      },
+      {
+        "step": 4,
+        "title": "Check Wiring for Continuity",
+        "description": "With the electrical connector disconnected from the FVR, use a multimeter to check the continuity of the wiring between the PCM and the FVR. This will help identify any open circuits in the wiring harness. Repair or replace any damaged wiring.",
+        "tools_needed": [
+          "Multimeter",
+          "Wiring diagram",
+          "Safety glasses"
+        ]
+      },
+      {
+        "step": 5,
+        "title": "PCM Diagnosis (If Necessary)",
+        "description": "If the previous steps do not reveal the source of the problem, the PCM may be faulty. This is less common, but possible. A professional scan tool capable of advanced diagnostics may be required to test the PCM's output to the FVR. Consider professional assistance for this step.",
+        "tools_needed": [
+          "Professional scan tool",
+          "Wiring diagram"
+        ]
+      }
+    ],
+    "tutorials": {
+      "title": "How to Diagnose a P0005 Code",
+      "youtubeId": "u-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w"
+    },
+    "bite_sized_insights": [
+      "A P0005 code can sometimes cause symptoms like rough idling, hesitation during acceleration, and reduced fuel economy.",
+      "Always refer to your vehicle's specific service manual for accurate wiring diagrams and component specifications.",
+      "Fuel pressure testing can be a helpful supplementary diagnostic step."
+    ],
+    "sources": [
+      "https://www.obd-codes.com/p0005/",
+      "https://repairpal.com/OBDII/P0005",
+      "https://www.yourmechanic.com/service/fuel-volume-regulator-replacement"
+    ]
+  },
+  "P0006": {
+    "code": "P0006",
+    "name": "Fuel Volume Regulator Control Circuit/Open",
+    "description": "This diagnostic trouble code (DTC) P0006 indicates that the Powertrain Control Module (PCM) has detected a malfunction in the fuel volume regulator control circuit. Specifically, the PCM has determined that the control circuit is either open (broken) or is not functioning as expected. The fuel volume regulator (FVR) is responsible for controlling the amount of fuel delivered to the fuel rail, ensuring proper fuel pressure for optimal engine performance. This code is commonly found in vehicles with common rail direct injection (CRDI) fuel systems.",
+    "affected_models": {
+      "brand": "Ford, Jaguar, Land Rover, Mazda, Mercedes-Benz, BMW, Volkswagen, Peugeot, Citroen",
+      "years": "2000-2024",
+      "models": "Focus, Mondeo, X-Type, Discovery, 3, 6, C-Class, E-Class, 3 Series, 5 Series, Golf, Passat, 308, C4"
+    },
+    "likely_causes": [
+      "Faulty Fuel Volume Regulator",
+      "Wiring issues in the FVR control circuit (open, short to ground, or short to voltage)",
+      "Corroded or loose electrical connectors",
+      "Faulty Fuel Pump",
+      "Faulty Powertrain Control Module (PCM)",
+      "Fuel filter blockage (can cause the FVR to work overtime and fail)"
+    ],
+    "guided_steps": [
+      {
+        "step": 1,
+        "title": "Visual Inspection",
+        "description": "Begin by visually inspecting the fuel volume regulator (FVR) and its associated wiring harness. Look for any signs of physical damage, corrosion, or loose connections. Pay close attention to the connector at the FVR itself.",
+        "tools_needed": [
+          "Flashlight",
+          "Inspection mirror"
+        ]
+      },
+      {
+        "step": 2,
+        "title": "Check FVR Wiring",
+        "description": "Using a multimeter, check the continuity of the wires in the FVR control circuit. Verify that there are no open circuits (breaks in the wire). Also, check for short circuits to ground or voltage. Refer to the vehicle's wiring diagram for the correct wire locations.",
+        "tools_needed": [
+          "Multimeter",
+          "Wiring diagram"
+        ]
+      },
+      {
+        "step": 3,
+        "title": "Test Fuel Volume Regulator",
+        "description": "If the wiring appears to be intact, test the FVR itself. This may involve using a scan tool to command the FVR to different positions and observing its response. Some FVRs can be tested with a multimeter for resistance. Consult the vehicle's service manual for specific testing procedures.",
+        "tools_needed": [
+          "Scan tool",
+          "Multimeter",
+          "Service manual"
+        ]
+      },
+      {
+        "step": 4,
+        "title": "Check Fuel Pressure",
+        "description": "Verify the fuel pressure at the fuel rail. Low fuel pressure can sometimes trigger a P0006 code. If the fuel pressure is low, investigate the fuel pump, fuel filter, and fuel lines.",
+        "tools_needed": [
+          "Fuel pressure gauge"
+        ]
+      },
+      {
+        "step": 5,
+        "title": "Inspect Fuel Filter",
+        "description": "A clogged fuel filter can restrict fuel flow and put excessive strain on the fuel pump and FVR. Replace the fuel filter if it is dirty or clogged.",
+        "tools_needed": [
+          "Fuel filter wrench",
+          "New fuel filter"
+        ]
+      },
+      {
+        "step": 6,
+        "title": "PCM Diagnosis (Last Resort)",
+        "description": "If all other components have been tested and found to be functioning correctly, the PCM itself may be faulty. This is rare, but possible. Consult a qualified technician for PCM diagnosis and potential replacement.",
+        "tools_needed": [
+          "Scan tool",
+          "PCM diagnostic tools"
+        ]
+      }
+    ],
+    "tutorials": {
+      "title": "P0006 Fuel Volume Regulator Control Circuit/Open - How to Fix",
+      "youtubeId": "u-w-qJ-q9-I"
+    },
+    "bite_sized_insights": [
+      "The P0006 code is often related to diesel engines with high-pressure fuel systems.",
+      "Ignoring this code can lead to poor engine performance, difficulty starting, and potential damage to the fuel system.",
+      "Always refer to the vehicle's specific service manual for accurate testing procedures and specifications."
+    ],
+    "sources": [
+      "https://www.obd-codes.com/p0006/",
+      "https://www.autocodes.com/p0006.html",
+      "https://repairpal.com/OBDII/P0006"
+    ]
+  },
+  "P0007": {
+    "code": "P0007",
+    "name": "Fuel Volume Regulator Control Circuit/System Low",
+    "description": "This diagnostic trouble code (DTC) P0007 indicates that the Powertrain Control Module (PCM) has detected a problem with the fuel volume regulator control circuit or system. Specifically, the PCM has determined that the fuel volume is lower than expected. This code is commonly found in vehicles with a fuel volume control system, often used in diesel engines with common rail direct injection, but can also appear in some gasoline engines. The fuel volume regulator controls the amount of fuel delivered to the fuel rail, ensuring proper fuel pressure and delivery for optimal engine performance. A low fuel volume can lead to issues like hard starting, stalling, reduced power, and increased emissions.",
+    "affected_models": {
+      "brand": "Ford, BMW, Mercedes-Benz, Volkswagen, Audi, Peugeot, Citroen, Hyundai, Kia",
+      "years": "2000-2024",
+      "models": "Powerstroke Diesel (Ford), Various Diesel Models (BMW, Mercedes-Benz, VW, Audi, Peugeot, Citroen), Diesel Models (Hyundai, Kia)"
+    },
+    "likely_causes": [
+      "Faulty Fuel Volume Regulator Valve",
+      "Wiring issues in the fuel volume regulator control circuit (open, shorted, or corroded wires)",
+      "Faulty Fuel Pump",
+      "Clogged Fuel Filter",
+      "Faulty Fuel Pressure Sensor",
+      "PCM (Powertrain Control Module) failure (rare)",
+      "Low Fuel Level",
+      "Fuel Leak in the system"
+    ],
+    "guided_steps": [
+      {
+        "step": 1,
+        "title": "Visual Inspection",
+        "description": "Begin by visually inspecting the fuel volume regulator, fuel pump, fuel lines, and fuel filter for any signs of damage, leaks, or corrosion. Check the wiring harness and connectors associated with these components for loose connections or damaged wires.",
+        "tools_needed": [
+          "Flashlight",
+          "Safety Glasses"
+        ]
+      },
+      {
+        "step": 2,
+        "title": "Check Fuel Level",
+        "description": "Ensure the fuel level is adequate. A low fuel level can sometimes trigger this code.",
+        "tools_needed": [
+          "Fuel Gauge"
+        ]
+      },
+      {
+        "step": 3,
+        "title": "Fuel Filter Inspection",
+        "description": "Remove and inspect the fuel filter for clogging. Replace it if necessary. A clogged filter restricts fuel flow and can cause low fuel volume.",
+        "tools_needed": [
+          "Fuel Filter Wrench",
+          "Drain Pan",
+          "New Fuel Filter"
+        ]
+      },
+      {
+        "step": 4,
+        "title": "Fuel Pump Testing",
+        "description": "Test the fuel pump's output pressure and flow rate. Compare the results to the manufacturer's specifications. A failing fuel pump may not deliver sufficient fuel volume.",
+        "tools_needed": [
+          "Fuel Pressure Gauge",
+          "Flow Meter"
+        ]
+      },
+      {
+        "step": 5,
+        "title": "Fuel Volume Regulator Testing",
+        "description": "Using a scan tool, attempt to activate the fuel volume regulator. Monitor its response and check for any error codes related to the regulator itself. If the regulator doesn't respond or shows errors, it may be faulty.",
+        "tools_needed": [
+          "Scan Tool",
+          "Multimeter"
+        ]
+      },
+      {
+        "step": 6,
+        "title": "Wiring Circuit Check",
+        "description": "Using a multimeter, check the continuity and resistance of the wiring circuit between the PCM and the fuel volume regulator. Repair any open or shorted circuits.",
+        "tools_needed": [
+          "Multimeter",
+          "Wiring Diagram"
+        ]
+      }
+    ],
+    "tutorials": {
+      "title": "P0007 - Fuel Volume Regulator Control Circuit/System Low - Cause & Fix",
+      "youtubeId": "u-w-w-q-w-g"
+    },
+    "bite_sized_insights": [
+      "This code is more common in diesel engines due to their high-pressure fuel systems.",
+      "Always check for fuel leaks before replacing any components.",
+      "A failing fuel pressure sensor can also cause this code, as it may provide inaccurate readings to the PCM."
+    ],
+    "sources": [
+      "https://www.obd-codes.com/p0007/",
+      "https://repairpal.com/OBDII/P0007"
+    ]
+  },
+  "P0008": {
+    "code": "P0008",
+    "name": "Exhaust Valve Control Solenoid Circuit High (Bank 1)",
+    "description": "The Powertrain Control Module (PCM) has detected a high voltage or excessive resistance in the control circuit for the exhaust valve control solenoid on Bank 1 of the engine. This solenoid is responsible for controlling the opening and closing of the exhaust valve, typically as part of a Variable Valve Timing (VVT) system. A high reading indicates a potential short to voltage or open circuit within the solenoid or its wiring.",
+    "affected_models": {
+      "brand": "Ford, Lincoln, Mercury, Mazda, Nissan, Hyundai, Kia",
+      "years": "2004-2023",
+      "models": "Focus, Fusion, Mustang, Escape, Explorer, F-150, Navigator, Milan, MX-5, Altima, Sonata, Optima, Sorento, Sportage"
+    },
+    "likely_causes": [
+      "Faulty Exhaust Valve Control Solenoid",
+      "Wiring harness damage (short to voltage, open, or corroded)",
+      "Damaged/corroded connector to the Exhaust Valve Control Solenoid",
+      "PCM failure (rare)",
+      "Low engine oil level or oil pressure (can affect VVT operation)",
+      "Sticking or clogged oil control valve (OCV) or VVT filter screen"
+    ],
+    "guided_steps": [
+      {
+        "step": 1,
+        "title": "Visual Inspection",
+        "description": "Inspect the wiring harness and connector leading to the exhaust valve control solenoid on Bank 1 for any signs of damage, corrosion, or loose connections. Pay close attention to areas where the harness may be exposed to heat or rubbing.",
+        "tools_needed": [
+          "Flashlight",
+          "Work gloves"
+        ]
+      },
+      {
+        "step": 2,
+        "title": "Check Engine Oil Level and Pressure",
+        "description": "Verify the engine oil level is within the acceptable range. Low oil level or pressure can significantly impact VVT system operation. If oil pressure is low, investigate the oil pump and pressure relief valve.",
+        "tools_needed": [
+          "Dipstick",
+          "Oil pressure gauge (optional)"
+        ]
+      },
+      {
+        "step": 3,
+        "title": "Test the Solenoid Circuit",
+        "description": "Using a multimeter, check the resistance of the exhaust valve control solenoid. Compare the reading to the manufacturer's specifications. Also, check for continuity between the solenoid connector and the PCM.  Look for shorts to ground or voltage.",
+        "tools_needed": [
+          "Multimeter",
+          "Wiring diagram"
+        ]
+      },
+      {
+        "step": 4,
+        "title": "Solenoid Testing/Replacement",
+        "description": "If the solenoid resistance is out of spec or there's a wiring issue, test the solenoid's functionality using a scan tool to activate it. If it doesn't respond, replace the solenoid. Before replacement, check the VVT filter screen for blockage.",
+        "tools_needed": [
+          "Scan tool",
+          "Multimeter",
+          "Sockets/Wrenches",
+          "New Solenoid"
+        ]
+      },
+      {
+        "step": 5,
+        "title": "PCM Inspection (Last Resort)",
+        "description": "If all other tests pass, a PCM failure is possible. This should be diagnosed by a qualified technician.  Check for any PCM updates available.",
+        "tools_needed": [
+          "Scan tool",
+          "PCM diagnostic tools"
+        ]
+      }
+    ],
+    "tutorials": {
+      "title": "P0008 Code Explained - Exhaust Valve Control Solenoid",
+      "youtubeId": "t-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w"
+    },
+    "bite_sized_insights": [
+      "This code often appears with other VVT-related codes.",
+      "Ignoring this code can lead to reduced engine performance and fuel economy.",
+      "Always use the correct oil type and change intervals for your vehicle."
+    ],
+    "sources": [
+      "https://www.obd-codes.com/p0008/",
+      "https://repairpal.com/OBDII/P0008"
+    ]
+  },
+  "P0009": {
+    "code": "P0009",
+    "name": "Fuel Volume Regulator Control Circuit/Open",
+    "description": "This diagnostic trouble code (DTC) P0009 indicates that the Powertrain Control Module (PCM) has detected a malfunction in the circuit controlling the fuel volume regulator. Specifically, the PCM has determined that the control circuit is either open or experiencing a malfunction. The fuel volume regulator controls the amount of fuel delivered to the fuel pump, ensuring adequate fuel pressure and volume for optimal engine performance. This code is most common on vehicles with a variable fuel pump system.",
+    "affected_models": {
+      "brand": "Ford, Lincoln, Mercury, Dodge, Jeep, Chrysler, Volkswagen, Audi",
+      "years": "2000-2023",
+      "models": "Focus, Ranger, Explorer, Navigator, Grand Cherokee, Ram 1500, Passat, A4, A6"
+    },
+    "likely_causes": [
+      "Faulty Fuel Volume Regulator (FVR)",
+      "Wiring issues in the FVR control circuit (open, short to ground, short to voltage)",
+      "Corroded or damaged FVR connector",
+      "Faulty Powertrain Control Module (PCM)",
+      "Fuel pump relay issues",
+      "Low fuel pressure"
+    ],
+    "guided_steps": [
+      {
+        "step": 1,
+        "title": "Visual Inspection",
+        "description": "Carefully inspect the wiring harness and connector leading to the fuel volume regulator for any signs of damage, corrosion, or loose connections. Pay close attention to areas where the harness may be exposed to heat, moisture, or physical abrasion.",
+        "tools_needed": [
+          "Flashlight",
+          "Mirror"
+        ]
+      },
+      {
+        "step": 2,
+        "title": "Check Fuel Pressure",
+        "description": "Using a fuel pressure gauge, verify that the fuel pressure is within the manufacturer's specified range. Low fuel pressure can sometimes trigger this code. Observe fuel pressure during engine operation and while the FVR is being commanded to adjust.",
+        "tools_needed": [
+          "Fuel pressure gauge",
+          "Fuel pressure test kit"
+        ]
+      },
+      {
+        "step": 3,
+        "title": "Test Fuel Volume Regulator Circuit",
+        "description": "Using a multimeter, perform a continuity test on the FVR control circuit wires. Check for opens or shorts to ground or voltage. Also test the FVR itself for proper resistance according to the manufacturer's specifications. A scan tool capable of monitoring FVR commands and feedback can be extremely helpful.",
+        "tools_needed": [
+          "Multimeter",
+          "Wiring diagram",
+          "Scan tool (with FVR monitoring capability)"
+        ]
+      },
+      {
+        "step": 4,
+        "title": "Inspect Fuel Pump Relay",
+        "description": "Check the fuel pump relay for proper operation. A faulty relay can cause intermittent or complete failure of the fuel pump and related systems. Swap with a known good relay if possible.",
+        "tools_needed": [
+          "Multimeter",
+          "Fuel pump relay"
+        ]
+      },
+      {
+        "step": 5,
+        "title": "PCM Diagnosis (If Necessary)",
+        "description": "If the previous steps do not reveal the cause of the problem, the PCM may be faulty. This should be considered a last resort, as PCM replacement can be expensive. Have the PCM tested by a qualified technician.",
+        "tools_needed": [
+          "Scan tool",
+          "PCM testing equipment (professional)"
+        ]
+      }
+    ],
+    "tutorials": {
+      "title": "P0009 Fuel Volume Regulator - How to Diagnose and Fix",
+      "youtubeId": "h6Wb8o-Xw2g"
+    },
+    "bite_sized_insights": [
+      "This code often appears with other fuel system related codes.",
+      "The Fuel Volume Regulator is designed to adjust fuel pump speed based on engine demand.",
+      "Ignoring this code can lead to fuel delivery problems, poor engine performance, and potentially damage to the fuel pump."
+    ],
+    "sources": [
+      "https://www.obd-codes.com/p0009/",
+      "https://www.yourmechanic.com/news/p0009-fuel-volume-regulator-control-circuit-open",
+      "https://ricksauto.com/troubleshooting/p0009-fuel-volume-regulator-control-circuit-open/"
+    ]
+  },
+  "P0010": {
+    "code": "P0010",
+    "name": "Variable Valve Timing (VVT) System: Malfunction - Bank 1",
+    "description": "The Powertrain Control Module (PCM) has detected a problem with the Variable Valve Timing (VVT) system on Bank 1 of the engine. This code indicates that the actual VVT timing is not matching the desired VVT timing. The VVT system is designed to optimize engine performance and fuel efficiency by altering the timing of the intake and/or exhaust valves. Bank 1 refers to the side of the engine that contains cylinder #1.",
+    "affected_models": {
+      "brand": "Honda, Acura, Toyota, Nissan, Ford, GM, Hyundai, Kia, BMW, Mercedes-Benz",
+      "years": "1996-2023",
+      "models": "Various - commonly found in models with VVT technology (e.g., Honda Civic, Accord, Toyota Camry, Corolla, Ford Escape, Explorer, GM vehicles with EcoTec engines)"
+    },
+    "likely_causes": [
+      "Low engine oil level or oil pressure",
+      "Faulty VVT solenoid/actuator",
+      "Clogged or restricted oil passages to the VVT system",
+      "Faulty camshaft position sensor",
+      "Faulty crankshaft position sensor",
+      "Stretched or worn timing chain/belt",
+      "PCM (Powertrain Control Module) failure (rare)",
+      "Wiring issues to the VVT solenoid or sensors (open, short, or corrosion)",
+      "Faulty oil control valve"
+    ],
+    "guided_steps": [
+      {
+        "step": 1,
+        "title": "Check Engine Oil Level and Pressure",
+        "description": "Verify the engine oil level is within the specified range. If low, add oil. Use an oil pressure gauge to confirm adequate oil pressure. Insufficient oil or low pressure is a common cause of VVT malfunction.",
+        "tools_needed": [
+          "Dipstick",
+          "Oil pressure gauge"
+        ]
+      },
+      {
+        "step": 2,
+        "title": "Inspect VVT Solenoid/Actuator",
+        "description": "Locate the VVT solenoid/actuator for Bank 1. Visually inspect for damage or leaks. Use a multimeter to check the solenoid's resistance and ensure it's within specifications. You can also try applying voltage to the solenoid to see if it actuates.",
+        "tools_needed": [
+          "Multimeter",
+          "Wiring diagram",
+          "Scan tool (for activation tests)"
+        ]
+      },
+      {
+        "step": 3,
+        "title": "Check Oil Filter and Passages",
+        "description": "Remove the oil filter and inspect it for debris. If found, it suggests a blockage in the oil system. Inspect the oil passages leading to the VVT solenoid for any restrictions. A professional oil flush may be necessary.",
+        "tools_needed": [
+          "Oil filter wrench",
+          "Inspection tools"
+        ]
+      },
+      {
+        "step": 4,
+        "title": "Test Camshaft and Crankshaft Position Sensors",
+        "description": "Use a scan tool to monitor the signals from the camshaft and crankshaft position sensors. Check for any erratic readings or dropouts. A faulty sensor can disrupt the VVT system's operation.",
+        "tools_needed": [
+          "Scan tool",
+          "Oscilloscope (optional)"
+        ]
+      },
+      {
+        "step": 5,
+        "title": "Inspect Timing Chain/Belt",
+        "description": "If the vehicle has high mileage, inspect the timing chain or belt for wear or stretching. A stretched timing chain can affect valve timing and trigger the P0010 code. This often requires removing the timing cover.",
+        "tools_needed": [
+          "Inspection tools",
+          "Timing cover removal tools"
+        ]
+      }
+    ],
+    "tutorials": {
+      "title": "P0010 - Variable Valve Timing (VVT) System Control Circuit/Open - Bank 1",
+      "youtubeId": ""
+    },
+    "bite_sized_insights": [
+      "The P0010 code often appears alongside other VVT-related codes.",
+      "Always check for Technical Service Bulletins (TSBs) related to the specific vehicle and engine combination.",
+      "Ignoring this code can lead to reduced engine performance, increased fuel consumption, and potential engine damage."
+    ],
+    "sources": [
+      "https://www.obd-codes.com/p0010/",
+      "https://repairpal.com/OBDII/P0010"
+    ]
   }
 }
